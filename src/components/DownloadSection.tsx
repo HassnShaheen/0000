@@ -137,7 +137,7 @@ const DownloadSection = () => {
   ];
 
   return (
-    <section className="w-full py-24 bg-slate-50 dark:bg-slate-900">
+    <section id="download" className="w-full py-24 bg-slate-50 dark:bg-slate-900">
       <div className="container px-4 md:px-6 mx-auto">
         <div className="flex flex-col items-center text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 animate-fade-in">
