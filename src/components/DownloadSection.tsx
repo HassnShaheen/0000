@@ -214,24 +214,19 @@ const DownloadSection = () => {
               )}
             </CardContent>
             <CardFooter>
-              <Button
-                className="w-full"
-                size="lg"
-                onClick={handleDownload}
-                disabled={isDownloading}
-              >
-                {isDownloading ? (
-                  <span className="flex items-center">
-                    Downloading...{" "}
-                    <Download className="ml-2 h-4 w-4 animate-bounce" />
-                  </span>
-                ) : (
-                  <span className="flex items-center">
-                    Download <Download className="ml-2 h-4 w-4" />
-                  </span>
-                )}
-              </Button>
-            </CardFooter>
+  <a
+    href="https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/El3atawla.Setup.exe"
+    download
+    className="w-full"
+  >
+    <Button className="w-full" size="lg">
+      <span className="flex items-center">
+        Download <Download className="ml-2 h-4 w-4" />
+      </span>
+    </Button>
+  </a>
+</CardFooter>
+
           </Card>
 
           {/* Tabs for requirements & installation */}
