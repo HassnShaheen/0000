@@ -73,7 +73,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 className="group lightning-border bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all duration-300"
-                onClick={() => (window.location.href = "https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/PluginUpdate.rar")}
+                onClick={() => (window.location.href = "https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/El3atawla.Setup.exe")}
               >
                 Download Now
                 <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
