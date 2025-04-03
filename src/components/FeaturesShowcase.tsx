@@ -104,7 +104,7 @@ const PluginFeatures = () => {
   const getYoutubeLink = (id: string) => `https://youtu.be/${id}`;
 
   return (
-    <section id="download" className="w-full py-24 bg-slate-50 dark:bg-slate-900">
+    <section id="features" className="py-16 px-4 md:px-12 bg-background text-foreground">
       <div className="max-w-5xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-4 text-primary">Explore Plugin Features</h2>
         <p className="text-muted-foreground text-lg mb-6">
