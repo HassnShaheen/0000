@@ -7,7 +7,7 @@ interface CustomCursorProps {
   variant?: "default" | "fire" | "lightning" | "magic";
 }
 
-const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
+const CustomCursor = ({ variant = "fire" }: CustomCursorProps) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isPointer, setIsPointer] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
@@ -17,7 +17,6 @@ const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
     const updatePosition = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
 
-      // Check if cursor is over a clickable element
       const target = e.target as HTMLElement;
       const computedStyle = window.getComputedStyle(target);
       setIsPointer(computedStyle.cursor === "pointer");
@@ -47,79 +46,31 @@ const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
     switch (variant) {
       case "fire":
         return (
-          <div className="relative">
-            {/* Main fire core */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-b from-yellow-400 to-orange-600 blur-[2px] animate-fire-core" />
-            
-            {/* Flames */}
-            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-              <motion.div
-                key={angle}
-                className="absolute w-4 h-8 bg-gradient-to-b from-yellow-300 to-red-600 rounded-full opacity-80"
-                style={{
-                  left: '50%',
-                  bottom: '100%',
-                  transformOrigin: 'bottom center',
-                  transform: `translateX(-50%) rotate(${angle}deg) translateY(-5px)`,
-                  clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                }}
-                animate={{
-                  height: [8, 12, 8, 10, 8],
-                  opacity: [0.8, 1, 0.7, 0.9, 0.8],
-                }}
-                transition={{
-                  duration: 0.5 + Math.random(),
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-            ))}
-            
-            {/* Fire glow */}
-            <div className="absolute inset-0 rounded-full bg-orange-500/20 animate-fire-glow" />
-            
-            {/* Sparks */}
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-yellow-300 rounded-full"
-                initial={{
-                  x: Math.cos((i * 45 * Math.PI) / 180) * 5,
-                  y: Math.sin((i * 45 * Math.PI) / 180) * 5,
-                  opacity: 0,
-                }}
-                animate={{
-                  x: Math.cos((i * 45 * Math.PI) / 180) * (15 + Math.random() * 10),
-                  y: Math.sin((i * 45 * Math.PI) / 180) * (15 + Math.random() * 10) - 10,
-                  opacity: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 1 + Math.random(),
-                  repeat: Infinity,
-                  delay: i * 0.1,
-                }}
-              />
-            ))}
-            
-            {/* Click effect */}
+          <>
+            {/* لهب خارجي */}
+            <div className="absolute inset-0 rounded-full animate-pulse bg-gradient-to-br from-yellow-400 via-red-500 to-orange-600 opacity-50 blur-xl shadow-[0_0_30px_rgba(255,100,0,0.7)]" />
+
+            {/* نواة اللهب */}
+            <div className="w-4 h-4 bg-orange-500 rounded-full z-10 shadow-[0_0_20px_rgba(255,69,0,0.8)]" />
+
+            {/* تأثير الضغط */}
             {isClicking && (
-              <>
-                <motion.div
-                  initial={{ scale: 0, opacity: 1 }}
-                  animate={{ scale: 3, opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 bg-gradient-to-b from-yellow-300 to-red-600 rounded-full"
-                />
-                <motion.div
-                  initial={{ scale: 0, opacity: 1 }}
-                  animate={{ scale: 4, opacity: 0 }}
-                  transition={{ duration: 0.7, delay: 0.1 }}
-                  className="absolute inset-0 bg-orange-500/30 rounded-full"
-                />
-              </>
+              <motion.div
+                initial={{ scale: 0, opacity: 1 }}
+                animate={{ scale: 2, opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 bg-orange-400/50 rounded-full"
+              />
             )}
-          </div>
+
+            {/* شعلات نارية عشوائية حوالين المؤشر */}
+            <div className="absolute -top-2 -left-1 w-1.5 h-1.5 bg-red-400 rounded-full animate-bounce-fast" />
+            <div className="absolute -bottom-2 -right-2 w-1.5 h-1.5 bg-yellow-400 rounded-full animate-bounce-slow" />
+            <div className="absolute -top-2 -right-2 w-1 h-1 bg-orange-300 rounded-full animate-bounce" />
+          </>
         );
+
+      // باقي الحالات زي ما هي
       case "lightning":
         return (
           <>
@@ -188,14 +139,14 @@ const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
       style={{
         left: position.x,
         top: position.y,
-        width: isPointer ? "40px" : "24px",
-        height: isPointer ? "40px" : "24px",
+        width: isPointer ? "40px" : "28px",
+        height: isPointer ? "40px" : "28px",
       }}
       animate={{
-        x: position.x - (isPointer ? 20 : 12),
-        y: position.y - (isPointer ? 20 : 12),
+        x: position.x - (isPointer ? 20 : 14),
+        y: position.y - (isPointer ? 20 : 14),
         opacity: isHidden ? 0 : 1,
-        scale: isPointer ? 1.5 : 1,
+        scale: isPointer ? 1.3 : 1,
       }}
       transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
     >
