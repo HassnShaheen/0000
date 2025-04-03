@@ -54,11 +54,8 @@ const Header = ({
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full animate-pulse"></div>
               </div>
               <span className="text-xl font-bold text-primary">{logo}</span>
-              <img
-                src="https://seeklogo.com/images/A/autodesk-revit-logo-C3F5E6D48D-seeklogo.com.png"
-                alt="Revit Logo"
-                className="h-6 w-auto ml-2"
-              />
+              <img src="/images/revit-loogo.png" alt="Revit Logo" className="h-6 w-auto" />
+
             </Link>
           </div>
 
