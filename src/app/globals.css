@@ -31,6 +31,9 @@
     --chart-5: 27 87% 67%;
     --lightning: 190 90% 50%;
   }
+html {
+  scroll-behavior: smooth;
+}
 
   .dark {
     --background: 240 10% 3.9%;
