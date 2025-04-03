@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface CustomCursorProps {
-  variant?: "default" | "fire" | "lightning" | "magic";
+  variant?: "default";
 }
 
 const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
@@ -42,22 +42,6 @@ const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
     };
   }, []);
 
-  const getCursorContent = () => {
-    return (
-      <>
-        <div className="w-3 h-3 bg-primary rounded-full" />
-        {isClicking && (
-          <motion.div
-            initial={{ scale: 0, opacity: 1 }}
-            animate={{ scale: 2, opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 bg-primary rounded-full"
-          />
-        )}
-      </>
-    );
-  };
-
   return (
     <motion.div
       className="fixed pointer-events-none z-[9999] flex items-center justify-center"
@@ -66,14 +50,23 @@ const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
         height: isPointer ? "40px" : "20px",
       }}
       animate={{
-        x: position.x - (isPointer ? 20 : 10), // Centered under the mouse
+        x: position.x - (isPointer ? 20 : 10), // يظبط موقعه تحت الماوس
         y: position.y - (isPointer ? 20 : 10),
         opacity: isHidden ? 0 : 1,
         scale: isPointer ? 1.2 : 1,
       }}
       transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
     >
-      {getCursorContent()}
+      {/* شكل الماوس القديم */}
+      <div className="w-3 h-3 bg-primary rounded-full" />
+      {isClicking && (
+        <motion.div
+          initial={{ scale: 0, opacity: 1 }}
+          animate={{ scale: 2, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0 bg-primary rounded-full"
+        />
+      )}
     </motion.div>
   );
 };
