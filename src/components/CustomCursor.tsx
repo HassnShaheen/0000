@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface CustomCursorProps {
-  variant?: "default";
+  variant?: "default" | "fire" | "lightning" | "magic";
 }
 
 const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
@@ -42,6 +42,35 @@ const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
     };
   }, []);
 
+  const getCursorContent = () => {
+    return (
+      <>
+        {/* النقطة الأساسية */}
+        <div className="w-3 h-3 bg-primary rounded-full z-10" />
+
+        {/* تأثير ضغط انيميشن دائرة خارجية */}
+        {isClicking && (
+          <motion.div
+            initial={{ scale: 0, opacity: 0.8 }}
+            animate={{ scale: 2.5, opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute w-6 h-6 rounded-full bg-primary/50"
+          />
+        )}
+
+        {/* كور صغيرة بتلف حوالين المؤشر وقت الكلك */}
+        {isClicking && (
+          <motion.div
+            className="absolute w-12 h-12 rounded-full border-2 border-dashed border-primary animate-spin-slow"
+            initial={{ opacity: 0.6, scale: 0.8 }}
+            animate={{ opacity: 0, scale: 1.6 }}
+            transition={{ duration: 0.6 }}
+          />
+        )}
+      </>
+    );
+  };
+
   return (
     <motion.div
       className="fixed pointer-events-none z-[9999] flex items-center justify-center"
@@ -50,23 +79,14 @@ const CustomCursor = ({ variant = "default" }: CustomCursorProps) => {
         height: isPointer ? "40px" : "20px",
       }}
       animate={{
-        x: position.x - (isPointer ? 20 : 10), // يظبط موقعه تحت الماوس
+        x: position.x - (isPointer ? 20 : 10),
         y: position.y - (isPointer ? 20 : 10),
         opacity: isHidden ? 0 : 1,
         scale: isPointer ? 1.2 : 1,
       }}
       transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
     >
-      {/* شكل الماوس القديم */}
-      <div className="w-3 h-3 bg-primary rounded-full" />
-      {isClicking && (
-        <motion.div
-          initial={{ scale: 0, opacity: 1 }}
-          animate={{ scale: 2, opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-primary rounded-full"
-        />
-      )}
+      {getCursorContent()}
     </motion.div>
   );
 };
