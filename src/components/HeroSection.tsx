@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Play, Zap, X } from "lucide-react";
+import { Download, Play, Zap, X } from "lucide-react";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
@@ -14,21 +14,16 @@ const HeroSection = () => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        videoRef.current &&
-        !videoRef.current.contains(event.target as Node)
-      ) {
+      if (videoRef.current && !videoRef.current.contains(event.target as Node)) {
         setShowVideo(false);
       }
     };
-
     if (showVideo) {
       document.addEventListener("mousedown", handleClickOutside);
     }
@@ -39,6 +34,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background to-background/80 dark:from-background dark:to-background/90">
+      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-grid-small-white/[0.2] dark:bg-grid-small-white/[0.05] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
         <div className="absolute top-1/4 left-1/4 w-1 h-40 bg-accent/80 rotate-45 animate-lightning blur-sm" />
@@ -49,8 +45,10 @@ const HeroSection = () => {
         <div className="absolute bottom-1/3 left-1/3 w-2 h-40 bg-red-500/60 rotate-45 animate-lightning blur-md" />
       </div>
 
+      {/* Content */}
       <div className="container px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+          {/* Text Side */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,19 +66,14 @@ const HeroSection = () => {
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-[600px] text-left">
-              Our plugin uses advanced AI to convert CAD files into native Revit
-              elements while preserving geometry and properties, saving you
-              hours of manual work.
+              Our plugin uses advanced AI to convert CAD files into native Revit elements while preserving geometry and properties, saving you hours of manual work.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <Button
                 size="lg"
                 className="group lightning-border bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all duration-300"
-                onClick={() =>
-                  (window.location.href =
-                    "https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/PluginUpdate.rar")
-                }
+                onClick={() => (window.location.href = "https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/PluginUpdate.rar")}
               >
                 Download Now
                 <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
@@ -99,9 +92,7 @@ const HeroSection = () => {
             </div>
 
             <div className="flex items-center space-x-4 text-sm text-muted-foreground mt-4">
-              <span>
-                Trusted by over 10,000+ architects and civil engineers
-              </span>
+              <span>Trusted by over 10,000+ architects and civil engineers</span>
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4].map((i) => (
                   <img
@@ -115,6 +106,7 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
+          {/* Image & Animation Side */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -125,42 +117,43 @@ const HeroSection = () => {
             <div className="relative">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-secondary rounded-xl blur-xl opacity-50 animate-pulse-slow"></div>
               <div className="relative bg-card rounded-xl shadow-2xl overflow-hidden border border-border">
+                {/* Main Preview Image */}
                 <div className="p-1">
                   <img
                     src="/images/hero-preview.png"
                     alt="CAD to Revit Conversion"
-                    className="w-full h-auto rounded-lg"
+                    className="w-full h-auto rounded-lg object-cover"
                   />
                 </div>
+
+                {/* Description Footer */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 to-transparent p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-sm font-medium">
-                        Before: CAD Drawing
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        2D Lines & Arcs
-                      </div>
+                      <div className="text-sm font-medium">Before: CAD Drawing</div>
+                      <div className="text-xs text-muted-foreground">2D Lines & Arcs</div>
                     </div>
                     <div>
-                      <div className="text-sm font-medium">
-                        After: Revit Model
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        3D BIM Elements
-                      </div>
+                      <div className="text-sm font-medium">After: Revit Model</div>
+                      <div className="text-xs text-muted-foreground">3D BIM Elements</div>
                     </div>
                   </div>
                   <div className="mt-2 w-full bg-muted rounded-full h-1.5">
                     <div className="bg-primary h-1.5 rounded-full w-3/4 animate-pulse"></div>
                   </div>
                 </div>
-                <div className="absolute top-6 right-6 px-3 py-1.5 bg-primary/90 text-primary-foreground rounded-md text-sm font-medium animate-float shadow-lg">
+
+                {/* Floating Logos */}
+                <div
+                  className="absolute top-6 right-6 px-3 py-1.5 bg-primary/90 text-primary-foreground rounded-md text-sm font-medium animate-float shadow-lg"
+                >
                   <span className="flex items-center">
                     <Zap className="h-3.5 w-3.5 ml-1.5" />
                     Smart Conversion
                   </span>
                 </div>
+
+                {/* Revit Logo */}
                 <div
                   className="absolute -top-6 -left-6 w-20 h-20 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center border border-border animate-float"
                   style={{ animationDelay: "0.8s" }}
@@ -171,6 +164,8 @@ const HeroSection = () => {
                     className="w-12 h-auto"
                   />
                 </div>
+
+                {/* AutoCAD Logo */}
                 <div
                   className="absolute top-1/2 right-1/2 w-16 h-16 bg-background/80 backdrop-blur-sm rounded-full flex items-center justify-center border border-border animate-float"
                   style={{ animationDelay: "1.2s" }}
@@ -187,6 +182,7 @@ const HeroSection = () => {
         </div>
       </div>
 
+      {/* Video Modal */}
       {showVideo && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
           <div
