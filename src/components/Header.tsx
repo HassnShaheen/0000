@@ -75,18 +75,22 @@ const Header = ({
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
               </Link>
             ))}
-            <div className="ml-4">
-              <Link href="https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/El3atawla.Setup.exe" target="_blank">
-  <Button
-    size="sm"
-    className="rounded-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all duration-300"
+           <div className="ml-4">
+  <a
+    href="https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/El3atawla.Setup.exe"
+    download
+    className="w-full"
   >
-    <Zap className="mr-1 h-4 w-4" />
-    Download Now
-  </Button>
-</Link>
+    <Button
+      size="sm"
+      className="rounded-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/50 transition-all duration-300 w-full"
+    >
+      <Zap className="mr-1 h-4 w-4" />
+      Download Now
+    </Button>
+  </a>
+</div>
 
-            </div>
             <ThemeSwitcher />
           </nav>
 
