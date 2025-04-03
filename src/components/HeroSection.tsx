@@ -127,7 +127,7 @@ const HeroSection = () => {
               <div className="relative bg-card rounded-xl shadow-2xl overflow-hidden border border-border">
                 <div className="p-1">
                   <img
-                    src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=800&q=80"
+                    src="/images/hero-preview.png"
                     alt="CAD to Revit Conversion"
                     className="w-full h-auto rounded-lg"
                   />
@@ -166,7 +166,7 @@ const HeroSection = () => {
                   style={{ animationDelay: "0.8s" }}
                 >
                   <img
-                    src="https://seeklogo.com/images/A/autodesk-revit-logo-C3F5E6D48D-seeklogo.com.png"
+                    src="/images/revit-logo.png"
                     alt="Revit Logo"
                     className="w-12 h-auto"
                   />
@@ -176,7 +176,7 @@ const HeroSection = () => {
                   style={{ animationDelay: "1.2s" }}
                 >
                   <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/AutoCAD_Logo.svg/1200px-AutoCAD_Logo.svg.png"
+                    src="/images/autocad-logo.png"
                     alt="AutoCAD Logo"
                     className="w-10 h-auto"
                   />
