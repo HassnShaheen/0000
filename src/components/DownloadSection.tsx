@@ -363,15 +363,15 @@ const DownloadSection = () => {
             <br />
             👉 <strong>LinkedIn:</strong>{" "}
             <a
-              href="https://www.linkedin.com/in/hassanshaheen"
+              href="https://www.linkedin.com/in/7assanshaheen/"
               className="text-primary underline"
             >
               /hassanshaheen
             </a>
             <br />
-            👉 <strong>Facebook:</strong>{" "}
+            👉 <strong>Developer Facebook:</strong>{" "}
             <a
-              href="https://facebook.com/el3atawla"
+              href="https://www.facebook.com/hsn.shahyn.622345?locale=ar_AR"
               className="text-primary underline"
             >
               /el3atawla
@@ -379,7 +379,7 @@ const DownloadSection = () => {
             <br />
             👉 <strong>YouTube:</strong>{" "}
             <a
-              href="https://youtube.com/@el3atawla"
+              href="https://www.youtube.com/@Wok_Smart_Not_Work_Hard/playlists"
               className="text-primary underline"
             >
               @el3atawla
