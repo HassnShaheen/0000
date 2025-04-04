@@ -52,6 +52,52 @@ const DownloadSection = () => {
     }, 300);
   };
 
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case "pass":
+        return <Check className="h-5 w-5 text-green-500 animate-bounce" />;
+      case "warning":
+        return <Info className="h-5 w-5 text-amber-500 animate-pulse" />;
+      case "fail":
+        return <X className="h-5 w-5 text-red-500 animate-shake" />;
+      default:
+        return null;
+    }
+  };
+
+  const systemRequirements = [
+    {
+      name: "Operating System",
+      required: "Windows 10 (64-bit)",
+      recommended: "Windows 11 (64-bit)",
+      status: "pass",
+    },
+    {
+      name: "Revit Version",
+      required: "Revit 2023",
+      recommended: "2024+ (coming soon)",
+      status: "pass",
+    },
+    {
+      name: "RAM",
+      required: "4 GB",
+      recommended: "8 GB",
+      status: "warning",
+    },
+    {
+      name: ".NET Framework",
+      required: "4.8",
+      recommended: "4.8+",
+      status: "pass",
+    },
+    {
+      name: "Disk Space",
+      required: "200 MB",
+      recommended: "500 MB",
+      status: "pass",
+    },
+  ];
+
   const installationSteps = [
     {
       title: "Close Revit from Task Manager 🛑",
@@ -159,6 +205,97 @@ const DownloadSection = () => {
                 </Button>
               </a>
             </CardFooter>
+          </Card>
+
+          <Card className="col-span-1 lg:col-span-2 shadow-lg border-0">
+            <CardHeader className="pb-4">
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="requirements">System Requirements</TabsTrigger>
+                  <TabsTrigger value="installation">Installation Guide</TabsTrigger>
+                </TabsList>
+                <CardContent>
+                  <TabsContent value="requirements" className="mt-0 space-y-4">
+                    <div className="rounded-lg border bg-card p-4 animate-fade-in">
+                      <div className="grid grid-cols-5 gap-4 font-medium text-sm mb-2 px-2">
+                        <div className="col-span-2">Requirement</div>
+                        <div className="col-span-1">Minimum</div>
+                        <div className="col-span-1">Recommended</div>
+                        <div className="col-span-1 text-center">Status</div>
+                      </div>
+                      <Separator className="my-2" />
+                      {systemRequirements.map((req, index) => (
+                        <div
+                          key={index}
+                          className="grid grid-cols-5 gap-4 py-3 text-sm px-2 items-center"
+                        >
+                          <div className="col-span-2 font-medium">{req.name}</div>
+                          <div className="col-span-1 text-slate-600 dark:text-slate-400">
+                            {req.required}
+                          </div>
+                          <div className="col-span-1 text-slate-600 dark:text-slate-400">
+                            {req.recommended}
+                          </div>
+                          <div className="col-span-1 flex justify-center">
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <div>{getStatusIcon(req.status)}</div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  {req.status === "pass" && "Meets requirements"}
+                                  {req.status === "warning" && "Meets minimum requirements"}
+                                  {req.status === "fail" && "Does not meet requirements"}
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex items-center p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg animate-fade-in">
+                      <HelpCircle className="h-5 w-5 text-amber-500 mr-2 flex-shrink-0" />
+                      <p className="text-sm text-amber-800 dark:text-amber-300">
+                        Not sure if your system is compatible? Use our online checker tool or contact support for help.
+                      </p>
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="installation" className="mt-0">
+                    <div className="space-y-6 animate-fade-in">
+                      {installationSteps.map((step, index) => (
+                        <div
+                          key={index}
+                          className="flex flex-col md:flex-row gap-6 items-start"
+                        >
+                          <div className="relative flex-shrink-0">
+                            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
+                              {index + 1}
+                            </div>
+                            {index < installationSteps.length - 1 && (
+                              <div className="absolute top-16 bottom-0 left-1/2 w-0.5 -ml-px h-12 bg-slate-200 dark:bg-slate-700 hidden md:block" />
+                            )}
+                          </div>
+                          <div className="flex-1 space-y-3">
+                            <h3 className="text-lg font-medium">{step.title}</h3>
+                            <p className="text-slate-600 dark:text-slate-400">
+                              {step.description}
+                            </p>
+                            <div className="rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+                              <img
+                                src={step.image}
+                                alt={`Step ${index + 1}: ${step.title}`}
+                                className="w-full h-48 object-cover"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+                </CardContent>
+              </Tabs>
+            </CardHeader>
           </Card>
         </div>
       </div>
