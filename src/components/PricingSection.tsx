@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, HelpCircle, Zap } from "lucide-react";
+import { Check, HelpCircle, Zap, Flame } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -38,64 +38,62 @@ interface PricingTier {
 const PricingSection = () => {
   const pricingTiers: PricingTier[] = [
     {
-      name: "Starter",
-      description: "Perfect for individual architects and small projects",
-      price: "$99",
-      billingPeriod: "one-time payment",
+      name: "Free Plan",
+      description: "Free for 1 month — renews by sharing our plugin on LinkedIn & Facebook",
+      price: "$0",
+      billingPeriod: "Free Access",
       features: [
         { text: "Basic CAD to Revit conversion", included: true },
-        { text: "Single user license", included: true },
-        { text: "Standard support", included: true },
-        { text: "1 year of updates", included: true },
-        { text: "Basic mapping rules", included: true },
-        {
-          text: "Batch processing (up to 5 files)",
-          included: false,
-          tooltip: "Limited to 5 files per batch",
-        },
-        { text: "Advanced property mapping", included: false },
-        { text: "Custom mapping rules", included: false },
-        { text: "Priority support", included: false },
+        { text: "Single user access", included: true },
+        { text: "Limited support", included: true },
+        { text: "1-month free access", included: true },
+        { text: "Automatic updates", included: true },
+        { text: "Community forum access", included: true },
+        { text: "Basic file mapping", included: true },
+        { text: "Batch processing (up to 3 files)", included: false },
+        { text: "Feature suggestions", included: false },
       ],
-      buttonText: "Buy Now",
+      buttonText: "Get Started",
     },
     {
-      name: "Professional",
-      description: "Ideal for professional architects and design firms",
-      price: "$249",
-      billingPeriod: "one-time payment",
+      name: "Pro Plan",
+      description: "Free for 3 months — just help us spread the word!",
+      price: "$0",
+      billingPeriod: "Free for 3 months",
       features: [
         { text: "Advanced CAD to Revit conversion", included: true },
-        { text: "Up to 5 user licenses", included: true },
-        { text: "Priority support", included: true },
-        { text: "2 years of updates", included: true },
-        { text: "Advanced mapping rules", included: true },
-        { text: "Batch processing (unlimited)", included: true },
-        { text: "Advanced property mapping", included: true },
-        { text: "Custom mapping rules", included: true },
+        { text: "Support via dedicated group", included: true },
+        { text: "1 plugin customization every 3 months", included: true },
+        { text: "Auto-updates & improvements", included: true },
+        { text: "Unlimited batch processing", included: true },
+        { text: "Suggest new features", included: true },
+        { text: "Requires YouTube video & social shares", included: true },
+        { text: "Priority email support", included: false },
         { text: "API access", included: false },
       ],
       highlighted: true,
-      badge: "Most Popular",
-      buttonText: "Buy Now",
+      badge: "Best Value",
+      buttonText: "Claim Free Pro",
     },
     {
-      name: "Enterprise",
-      description: "For large organizations with complex requirements",
-      price: "$599",
-      billingPeriod: "one-time payment",
+      name: "VIP Plan",
+      description: "Annual membership with full power and shiny gold perks",
+      price: "$50",
+      billingPeriod: "/year",
       features: [
-        { text: "Premium CAD to Revit conversion", included: true },
-        { text: "Unlimited user licenses", included: true },
-        { text: "24/7 priority support", included: true },
-        { text: "Lifetime updates", included: true },
-        { text: "Custom mapping rules", included: true },
-        { text: "Batch processing (unlimited)", included: true },
-        { text: "Advanced property mapping", included: true },
-        { text: "Custom mapping rules", included: true },
-        { text: "API access", included: true },
+        { text: "Full CAD to Revit suite", included: true },
+        { text: "Exclusive VIP support group", included: true },
+        { text: "Custom feature requests implemented", included: true },
+        { text: "All future updates included", included: true },
+        { text: "Unlimited batch conversion", included: true },
+        { text: "Direct access to developer", included: true },
+        { text: "Early access to new tools", included: true },
+        { text: "API + advanced integrations", included: true },
+        { text: "Gold profile & badge", included: true },
       ],
-      buttonText: "Contact Sales",
+      highlighted: true,
+      badge: "🔥 VIP Gold",
+      buttonText: "Join VIP",
     },
   ];
 
@@ -104,11 +102,8 @@ const PricingSection = () => {
       className="w-full py-24 bg-gradient-to-b from-muted/20 to-background relative overflow-hidden"
       id="pricing"
     >
-      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-grid-small-white/[0.2] dark:bg-grid-small-white/[0.05] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-
-        {/* Decorative elements */}
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-70" />
         <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl opacity-70" />
       </div>
@@ -125,8 +120,7 @@ const PricingSection = () => {
             Simple, Transparent Pricing
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Choose the plan that's right for you and start transforming your CAD
-            files to Revit today
+            Choose the plan that works for you and unlock the true power of El 3atawla Plugin.
           </p>
         </motion.div>
 
@@ -145,7 +139,11 @@ const PricingSection = () => {
                 {tier.highlighted && (
                   <div className="absolute top-0 right-0 -mt-2 -mr-2">
                     <Badge className="bg-primary text-primary-foreground">
-                      <Zap className="h-3.5 w-3.5 mr-1" />
+                      {tier.badge?.includes("VIP") ? (
+                        <Flame className="h-3.5 w-3.5 mr-1 animate-pulse text-yellow-400" />
+                      ) : (
+                        <Zap className="h-3.5 w-3.5 mr-1" />
+                      )}
                       {tier.badge}
                     </Badge>
                   </div>
@@ -171,11 +169,7 @@ const PricingSection = () => {
                             <span className="h-5 w-5 block border-2 border-muted-foreground/30 rounded-full" />
                           )}
                         </div>
-                        <span
-                          className={
-                            feature.included ? "" : "text-muted-foreground"
-                          }
-                        >
+                        <span className={feature.included ? "" : "text-muted-foreground"}>
                           {feature.text}
                           {feature.tooltip && (
                             <TooltipProvider>
@@ -195,10 +189,7 @@ const PricingSection = () => {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button
-                    className={`w-full ${tier.highlighted ? "lightning-border" : ""}`}
-                    variant={tier.highlighted ? "default" : "outline"}
-                  >
+                  <Button className={`w-full ${tier.highlighted ? "lightning-border" : ""}`} variant={tier.highlighted ? "default" : "outline"}>
                     {tier.buttonText}
                   </Button>
                 </CardFooter>
