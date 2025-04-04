@@ -39,7 +39,8 @@ const PricingSection = () => {
   const pricingTiers: PricingTier[] = [
     {
       name: "Free Plan",
-      description: "Free for 1 month — renews by sharing our plugin on LinkedIn & Facebook",
+      description:
+        "Free for 1 month — renews by sharing our plugin on LinkedIn & Facebook",
       price: "$0",
       billingPeriod: "Free Access",
       features: [
@@ -57,7 +58,8 @@ const PricingSection = () => {
     },
     {
       name: "Pro Plan",
-      description: "Free for 3 months — just help us spread the word!",
+      description:
+        "Free for 3 months — just help us spread the word!",
       price: "$0",
       billingPeriod: "Free for 3 months",
       features: [
@@ -67,17 +69,21 @@ const PricingSection = () => {
         { text: "Auto-updates & improvements", included: true },
         { text: "Unlimited batch processing", included: true },
         { text: "Suggest new features", included: true },
-        { text: "Requires YouTube video & social shares", included: true },
+        {
+          text: "Requires YouTube video & social shares",
+          included: true,
+        },
         { text: "Priority email support", included: false },
         { text: "API access", included: false },
       ],
       highlighted: true,
-      badge: "Best Value",
+      badge: "⭐ Best Value",
       buttonText: "Claim Free Pro",
     },
     {
       name: "VIP Plan",
-      description: "Annual membership with full power and shiny gold perks",
+      description:
+        "Annual membership with full power and shiny gold perks",
       price: "$50",
       billingPeriod: "/year",
       features: [
@@ -137,19 +143,34 @@ const PricingSection = () => {
                 className={`h-full flex flex-col ${tier.highlighted ? "border-primary shadow-lg relative overflow-hidden" : ""}`}
               >
                 {tier.highlighted && (
-                  <div className="absolute top-0 right-0 -mt-2 -mr-2">
-                    <Badge className="bg-primary text-primary-foreground">
-                      {tier.badge?.includes("VIP") ? (
-                        <Flame className="h-3.5 w-3.5 mr-1 animate-pulse text-yellow-400" />
-                      ) : (
-                        <Zap className="h-3.5 w-3.5 mr-1" />
-                      )}
-                      {tier.badge}
-                    </Badge>
+                  <div className="absolute top-2 right-2 z-10 flex items-center space-x-1">
+                    {tier.badge?.includes("VIP") ? (
+                      <>
+                        <Flame className="h-4 w-4 text-yellow-500 animate-pulse" />
+                        <span className="text-xs font-bold text-yellow-400 animate-pulse drop-shadow-md">
+                          {tier.badge}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="h-3.5 w-3.5 mr-1 text-pink-500 animate-bounce" />
+                        <span className="text-xs font-semibold text-pink-500 animate-bounce">
+                          {tier.badge}
+                        </span>
+                      </>
+                    )}
                   </div>
                 )}
                 <CardHeader>
-                  <CardTitle>{tier.name}</CardTitle>
+                  <CardTitle
+                    className={
+                      tier.name === "VIP Plan"
+                        ? "text-2xl text-yellow-400 font-bold animate-pulse drop-shadow"
+                        : "text-2xl"
+                    }
+                  >
+                    {tier.name}
+                  </CardTitle>
                   <CardDescription>{tier.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
@@ -169,7 +190,11 @@ const PricingSection = () => {
                             <span className="h-5 w-5 block border-2 border-muted-foreground/30 rounded-full" />
                           )}
                         </div>
-                        <span className={feature.included ? "" : "text-muted-foreground"}>
+                        <span
+                          className={
+                            feature.included ? "" : "text-muted-foreground"
+                          }
+                        >
                           {feature.text}
                           {feature.tooltip && (
                             <TooltipProvider>
@@ -189,7 +214,10 @@ const PricingSection = () => {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className={`w-full ${tier.highlighted ? "lightning-border" : ""}`} variant={tier.highlighted ? "default" : "outline"}>
+                  <Button
+                    className={`w-full ${tier.highlighted ? "lightning-border" : ""}`}
+                    variant={tier.highlighted ? "default" : "outline"}
+                  >
                     {tier.buttonText}
                   </Button>
                 </CardFooter>
@@ -206,9 +234,7 @@ const PricingSection = () => {
           className="mt-16 text-center"
         >
           <div className="bg-muted/50 rounded-lg p-6 max-w-3xl mx-auto">
-            <h3 className="text-xl font-semibold mb-2">
-              Need a custom solution?
-            </h3>
+            <h3 className="text-xl font-semibold mb-2">Need a custom solution?</h3>
             <p className="text-muted-foreground mb-4">
               We offer custom enterprise solutions for organizations with
               specific requirements. Contact our sales team to discuss your
