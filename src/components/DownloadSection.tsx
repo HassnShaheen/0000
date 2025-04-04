@@ -153,11 +153,13 @@ const DownloadSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           <Card className="col-span-1 lg:col-span-1 shadow-lg border-0">
             <CardHeader className="pb-4">
-              <CardTitle className="text-2xl">Download Now</CardTitle>
-              <CardDescription>
-                Beta Version: <strong>1.0.0.3</strong>{" "}
-                <span className="mx-2">•</span> Released: 05/04/2025
-              </CardDescription>
+             <CardTitle className="text-2xl">Download Now</CardTitle>
+<CardDescription className="flex flex-wrap items-center gap-x-2">
+  <span>Beta Version: <strong>1.0.0.3</strong></span>
+  <span className="text-xl leading-none">•</span>
+  <span>Released: 05/04/2025</span>
+</CardDescription>
+
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
