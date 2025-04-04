@@ -151,7 +151,7 @@ const DownloadSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <Card className="col-span-1 lg:col-span-1 shadow-lg border-0">
+          <Card className="shadow-lg border-0 self-start">
             <CardHeader className="pb-4">
              <CardTitle className="text-2xl">Download Now</CardTitle>
 <CardDescription className="flex flex-wrap items-center gap-x-2">
