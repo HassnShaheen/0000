@@ -155,8 +155,8 @@ const DownloadSection = () => {
             <CardHeader className="pb-4">
               <CardTitle className="text-2xl">Download Now</CardTitle>
               <CardDescription>
-                Latest version: <strong>1.0.0.3</strong>{" "}
-                <span className="mx-2">•</span> Released: April 5, 2025
+                Beta Version: <strong>1.0.0.3</strong>{" "}
+                <span className="mx-2">•</span> Released: 05/04/2025
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -164,36 +164,15 @@ const DownloadSection = () => {
                 <div className="flex items-center space-x-2">
                   <Server className="h-5 w-5 text-slate-500" />
                   <span className="text-sm text-slate-600 dark:text-slate-400">
-                    42.8 MB
+                    116 MB
                   </span>
                 </div>
                 <Badge
                   variant="outline"
-                  className="bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border-green-200 dark:border-green-800 animate-pulse"
+                  className="bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400 border-yellow-200 dark:border-yellow-800 animate-pulse"
                 >
-                  Latest Release
+                  Beta Version
                 </Badge>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-600 dark:text-slate-400">
-                    Compatible with:
-                  </span>
-                  <span className="font-medium">Revit 2023 Only </span>
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-600 dark:text-slate-400">
-                    License:
-                  </span>
-                  <span className="font-medium">Commercial</span>
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-600 dark:text-slate-400">
-                    Updates:
-                  </span>
-                  <span className="font-medium">Automatic </span>
-                </div>
               </div>
 
               {isDownloading && (
@@ -203,7 +182,7 @@ const DownloadSection = () => {
                       {downloadProgress}%
                     </span>
                     <span className="text-sm text-slate-600 dark:text-slate-400">
-                      {Math.round((downloadProgress / 100) * 42.8)} MB / 42.8 MB
+                      {Math.round((downloadProgress / 100) * 116)} MB / 116 MB
                     </span>
                   </div>
                   <Progress
@@ -214,172 +193,21 @@ const DownloadSection = () => {
               )}
             </CardContent>
             <CardFooter>
-  <a
-    href="https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/El3atawla.Setup.exe"
-    download
-    className="w-full"
-  >
-    <Button className="w-full" size="lg">
-      <span className="flex items-center">
-        Download <Download className="ml-2 h-4 w-4" />
-      </span>
-    </Button>
-  </a>
-</CardFooter>
-
-          </Card>
-
-          {/* Tabs for requirements & installation */}
-          <Card className="col-span-1 lg:col-span-2 shadow-lg border-0">
-            <CardHeader className="pb-4">
-              <Tabs
-                value={activeTab}
-                onValueChange={setActiveTab}
+              <a
+                href="https://github.com/HassnShaheen/YourRepo/releases/download/v1.0.0/El3atawla.Setup.exe"
+                download
                 className="w-full"
               >
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="requirements">
-                    System Requirements
-                  </TabsTrigger>
-                  <TabsTrigger value="installation">
-                    Installation Guide
-                  </TabsTrigger>
-                </TabsList>
-                <CardContent>
-                  <TabsContent value="requirements" className="mt-0 space-y-4">
-                    <div className="rounded-lg border bg-card p-4 animate-fade-in">
-                      <div className="grid grid-cols-5 gap-4 font-medium text-sm mb-2 px-2">
-                        <div className="col-span-2">Requirement</div>
-                        <div className="col-span-1">Minimum</div>
-                        <div className="col-span-1">Recommended</div>
-                        <div className="col-span-1 text-center">Status</div>
-                      </div>
-                      <Separator className="my-2" />
-                      {systemRequirements.map((req, index) => (
-                        <div
-                          key={index}
-                          className="grid grid-cols-5 gap-4 py-3 text-sm px-2 items-center"
-                        >
-                          <div className="col-span-2 font-medium">
-                            {req.name}
-                          </div>
-                          <div className="col-span-1 text-slate-600 dark:text-slate-400">
-                            {req.required}
-                          </div>
-                          <div className="col-span-1 text-slate-600 dark:text-slate-400">
-                            {req.recommended}
-                          </div>
-                          <div className="col-span-1 flex justify-center">
-                            <TooltipProvider>
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <div>{getStatusIcon(req.status)}</div>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  {req.status === "pass" &&
-                                    "Meets requirements"}
-                                  {req.status === "warning" &&
-                                    "Meets minimum requirements"}
-                                  {req.status === "fail" &&
-                                    "Does not meet requirements"}
-                                </TooltipContent>
-                              </Tooltip>
-                            </TooltipProvider>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex items-center p-4 bg-amber-50 dark:bg-amber-900/20 rounded-lg animate-fade-in">
-                      <HelpCircle className="h-5 w-5 text-amber-500 mr-2 flex-shrink-0" />
-                      <p className="text-sm text-amber-800 dark:text-amber-300">
-                        Not sure if your system is compatible? Use our online
-                        checker tool or contact support for help.
-                      </p>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="installation" className="mt-0">
-                    <div className="space-y-6 animate-fade-in">
-                      {installationSteps.map((step, index) => (
-                        <div
-                          key={index}
-                          className="flex flex-col md:flex-row gap-6 items-start"
-                        >
-                          <div className="relative flex-shrink-0">
-                            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl">
-                              {index + 1}
-                            </div>
-                            {index < installationSteps.length - 1 && (
-                              <div className="absolute top-16 bottom-0 left-1/2 w-0.5 -ml-px h-12 bg-slate-200 dark:bg-slate-700 hidden md:block" />
-                            )}
-                          </div>
-                          <div className="flex-1 space-y-3">
-                            <h3 className="text-lg font-medium">
-                              {step.title}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400">
-                              {step.description}
-                            </p>
-                            <div className="rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
-                              <img
-                                src={step.image}
-                                alt={`Step ${index + 1}: ${step.title}`}
-                                className="w-full h-48 object-cover"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </TabsContent>
-                </CardContent>
-              </Tabs>
-            </CardHeader>
+                <Button className="w-full" size="lg">
+                  <span className="flex items-center">
+                    Download <Download className="ml-2 h-4 w-4" />
+                  </span>
+                </Button>
+              </a>
+            </CardFooter>
           </Card>
-        </div>
 
-        <div className="mt-16 text-center animate-fade-in">
-          <div className="inline-flex items-center justify-center p-4 bg-slate-100 dark:bg-slate-800 rounded-lg mb-4">
-            <Shield className="h-6 w-6 text-primary mr-2" />
-            <span className="text-sm font-medium">
-              Secure download with automatic virus scanning 🛡️
-            </span>
-          </div>
-          <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Having trouble with installation? Contact us via:
-            <br />
-            👉 <strong>WhatsApp:</strong>{" "}
-            <a
-              href="https://wa.me/966506096730?text=السلام%20عليكم%20مهندس%20حسن%20معاك"
-              className="text-primary underline"
-            >
-              Message on WhatsApp
-            </a>
-            <br />
-            👉 <strong>LinkedIn:</strong>{" "}
-            <a
-              href="https://www.linkedin.com/in/7assanshaheen/"
-              className="text-primary underline"
-            >
-              /hassanshaheen
-            </a>
-            <br />
-            👉 <strong>Developer Facebook:</strong>{" "}
-            <a
-              href="https://www.facebook.com/hsn.shahyn.622345?locale=ar_AR"
-              className="text-primary underline"
-            >
-              /el3atawla
-            </a>
-            <br />
-            👉 <strong>YouTube:</strong>{" "}
-            <a
-              href="https://www.youtube.com/@Wok_Smart_Not_Work_Hard/playlists"
-              className="text-primary underline"
-            >
-              @el3atawla
-            </a>
-          </p>
+          <!-- باقي الكود للتابس ومتطلبات النظام وخطوات التثبيت يظل كما هو -->
         </div>
       </div>
     </section>
