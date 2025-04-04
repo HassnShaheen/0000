@@ -156,7 +156,7 @@ const DownloadSection = () => {
               <CardTitle className="text-2xl">Download Now</CardTitle>
               <CardDescription>
                 BETA version: <strong>1.0.0.3</strong>{" "}
-                <span className="mx-2">•</span> Released: April 5, 2025
+                <span className="mx-2">•</span> Released: 5/4/2025
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
