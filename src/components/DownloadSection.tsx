@@ -164,7 +164,7 @@ const DownloadSection = () => {
                 <div className="flex items-center space-x-2">
                   <Server className="h-5 w-5 text-slate-500" />
                   <span className="text-sm text-slate-600 dark:text-slate-400">
-                    42.8 MB
+                    116 MB
                   </span>
                 </div>
                 <Badge
@@ -203,7 +203,7 @@ const DownloadSection = () => {
                       {downloadProgress}%
                     </span>
                     <span className="text-sm text-slate-600 dark:text-slate-400">
-                      {Math.round((downloadProgress / 100) * 42.8)} MB / 42.8 MB
+                      {Math.round((downloadProgress / 100) * 116)} MB / 116 MB
                     </span>
                   </div>
                   <Progress
