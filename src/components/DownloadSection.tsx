@@ -38,64 +38,73 @@ interface PricingTier {
 const PricingSection = () => {
   const pricingTiers: PricingTier[] = [
     {
-      name: "Starter",
-      description: "Perfect for individual architects and small projects",
-      price: "$99",
-      billingPeriod: "one-time payment",
+      name: "Free",
+      description: "Try El 3atawla free for 1 month",
+      price: "$0",
+      billingPeriod: "for 1 month",
       features: [
-        { text: "Basic CAD to Revit conversion", included: true },
-        { text: "Single user license", included: true },
-        { text: "Standard support", included: true },
-        { text: "1 year of updates", included: true },
-        { text: "Basic mapping rules", included: true },
+        { text: "CAD to Revit conversion (basic)", included: true },
+        { text: "Single user access", included: true },
+        { text: "Auto-updates for 1 month", included: true },
+        { text: "Community support", included: true },
         {
-          text: "Batch processing (up to 5 files)",
-          included: false,
-          tooltip: "Limited to 5 files per batch",
+          text: "Social sharing renewal required",
+          included: true,
+          tooltip:
+            "After 1 month, renew by sharing posts on LinkedIn and Facebook",
         },
-        { text: "Advanced property mapping", included: false },
-        { text: "Custom mapping rules", included: false },
-        { text: "Priority support", included: false },
+        { text: "Basic mapping features", included: true },
+        { text: "No customizations", included: false },
+        { text: "No batch processing", included: false },
       ],
-      buttonText: "Buy Now",
+      buttonText: "Start Free Trial",
     },
     {
-      name: "Professional",
-      description: "Ideal for professional architects and design firms",
-      price: "$249",
-      billingPeriod: "one-time payment",
+      name: "Pro",
+      description: "Free for 3 months with social support",
+      price: "$0",
+      billingPeriod: "for 3 months",
       features: [
-        { text: "Advanced CAD to Revit conversion", included: true },
-        { text: "Up to 5 user licenses", included: true },
-        { text: "Priority support", included: true },
-        { text: "2 years of updates", included: true },
+        { text: "Full CAD to Revit conversion", included: true },
+        { text: "3-month auto-updates", included: true },
+        { text: "Access to support group", included: true },
+        {
+          text: "1 free plugin customization / 3 months",
+          included: true,
+        },
+        {
+          text: "Social interaction required",
+          included: true,
+          tooltip:
+            "Like & comment on YouTube, share the plugin on LinkedIn & Facebook, Record Video for the Plugin",
+        },
         { text: "Advanced mapping rules", included: true },
-        { text: "Batch processing (unlimited)", included: true },
-        { text: "Advanced property mapping", included: true },
-        { text: "Custom mapping rules", included: true },
-        { text: "API access", included: false },
+        { text: "Unlimited batch processing", included: true },
       ],
       highlighted: true,
-      badge: "Most Popular",
-      buttonText: "Buy Now",
+      badge: "Content Creator Plan",
+      buttonText: "Join Pro Plan",
     },
     {
-      name: "Enterprise",
-      description: "For large organizations with complex requirements",
-      price: "$599",
-      billingPeriod: "one-time payment",
+      name: "VIP",
+      description: "Exclusive annual plan with special benefits",
+      price: "$50",
+      billingPeriod: "per year",
       features: [
-        { text: "Premium CAD to Revit conversion", included: true },
-        { text: "Unlimited user licenses", included: true },
+        { text: "Everything in Pro plan", included: true },
+        { text: "VIP-only support group", included: true },
         { text: "24/7 priority support", included: true },
-        { text: "Lifetime updates", included: true },
-        { text: "Custom mapping rules", included: true },
-        { text: "Batch processing (unlimited)", included: true },
-        { text: "Advanced property mapping", included: true },
-        { text: "Custom mapping rules", included: true },
-        { text: "API access", included: true },
+        { text: "Lifetime auto-updates", included: true },
+        {
+          text: "Suggest features or plugins",
+          included: true,
+          tooltip:
+            "We build your idea and release it as a plugin update",
+        },
+        { text: "Early access to beta features", included: true },
+        { text: "Recognition as VIP supporter", included: true },
       ],
-      buttonText: "Contact Sales",
+      buttonText: "Upgrade to VIP",
     },
   ];
 
@@ -104,11 +113,8 @@ const PricingSection = () => {
       className="w-full py-24 bg-gradient-to-b from-muted/20 to-background relative overflow-hidden"
       id="pricing"
     >
-      {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full bg-grid-small-white/[0.2] dark:bg-grid-small-white/[0.05] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-
-        {/* Decorative elements */}
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl opacity-70" />
         <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl opacity-70" />
       </div>
@@ -140,7 +146,11 @@ const PricingSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Card
-                className={h-full flex flex-col ${tier.highlighted ? "border-primary shadow-lg relative overflow-hidden" : ""}}
+                className={`h-full flex flex-col ${
+                  tier.highlighted
+                    ? "border-primary shadow-lg relative overflow-hidden"
+                    : ""
+                }`}
               >
                 {tier.highlighted && (
                   <div className="absolute top-0 right-0 -mt-2 -mr-2">
@@ -151,7 +161,15 @@ const PricingSection = () => {
                   </div>
                 )}
                 <CardHeader>
-                  <CardTitle>{tier.name}</CardTitle>
+                  <CardTitle>
+                    {tier.name === "VIP" ? (
+                      <span className="text-yellow-400 animate-pulse drop-shadow-[0_0_8px_gold]">
+                        VIP 🔥
+                      </span>
+                    ) : (
+                      tier.name
+                    )}
+                  </CardTitle>
                   <CardDescription>{tier.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
@@ -196,7 +214,7 @@ const PricingSection = () => {
                 </CardContent>
                 <CardFooter>
                   <Button
-                    className={w-full ${tier.highlighted ? "lightning-border" : ""}}
+                    className={`w-full ${tier.highlighted ? "lightning-border" : ""}`}
                     variant={tier.highlighted ? "default" : "outline"}
                   >
                     {tier.buttonText}
